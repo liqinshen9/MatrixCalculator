@@ -15,5 +15,17 @@ Window {
         width: window.width
         height: window.height
 
+        Button {
+            text: "Button"
+            width:120
+            height:30
+            font.pointSize:12
+            x:300
+            y:300
+            onPressed: {
+                root.message("Hello!!")
+            }
+        }
+
     }
 }

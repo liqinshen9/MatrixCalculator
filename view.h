@@ -8,6 +8,7 @@ class View: public QQuickItem
     Q_OBJECT
 public:
     View(QQuickItem *parent = nullptr);
+    Q_INVOKABLE void message(QString msg);
 
     void initialize(QQmlApplicationEngine* enginePtr);
 private:
