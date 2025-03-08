@@ -10,8 +10,10 @@ View::View(QQuickItem *parent):
 
 void View::message(QString msg)
 {
-    //QQuickItem *button = this->findChild<QQuickItem*>("Button");
-    qDebug()<<msg;
+    QQuickItem *button = this->findChild<QQuickItem*>("ButtonName");
+    button->setProperty("text",msg);
+
+    //qDebug()<<msg;
 
 
 }

@@ -17,6 +17,7 @@ Window {
 
         Button {
             text: "Button"
+            objectName: "ButtonName"
             width:120
             height:30
             font.pointSize:12
