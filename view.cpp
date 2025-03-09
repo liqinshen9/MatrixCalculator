@@ -41,7 +41,8 @@ void View::printMatrix()
     QQuickItem* m_dim = this->findChild<QQuickItem*>("m_dimension");
     int n = n_dim->property("text").toInt();
     int m = m_dim->property("text").toInt();
-    matrix->applyDimension(n,m);
+    matrix->applyDimension(n,m);//important
+
     QQuickItem *matrix_grid = this->findChild<QQuickItem*>("matrix_grid");
     matrix_grid->setProperty("columns", m); //in qml, defeat columns is 2
 
