@@ -5,7 +5,7 @@
 View::View(QQuickItem *parent):
     QQuickItem(parent)
 {
-
+    matrix = new MatrixModel();
 }
 
 void View::message(QString msg)

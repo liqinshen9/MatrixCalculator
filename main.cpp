@@ -1,6 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include "view.h"
+#include "matrixbackground.h"
 
 #include <QDebug>
 
@@ -16,6 +17,8 @@ int main(int argc, char *argv[])
         []() { QCoreApplication::exit(-1); },
         Qt::QueuedConnection);
     qmlRegisterType<View>("Backend",1,0,"View");
+    qmlRegisterType<MatrixBackground>("Paint",1,0,"MatrixBackground");
+
     engine.loadFromModule("MatrixMoo", "Main");
 
     View *view = engine.rootObjects().at(0)->findChild<View*>("view");

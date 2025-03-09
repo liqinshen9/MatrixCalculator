@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Backend 1.0
+import Paint 1.0
 
 Window {
     width: 640
@@ -76,6 +77,13 @@ Window {
             }
         }
 
+        MatrixBackground {
+            id:matrixbg
+            x:100
+            y:120
+            width:200
+            height:200
+        }
 
         Button {
             text: "Row Reduce"
