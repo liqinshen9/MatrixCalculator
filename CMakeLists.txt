@@ -20,6 +20,7 @@ qt_add_qml_module(appMatrixMoo
         SOURCES view.h view.cpp
         SOURCES matrixmodel.h matrixmodel.cpp
         SOURCES matrixbackground.h matrixbackground.cpp
+        QML_FILES MatrixEntry.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

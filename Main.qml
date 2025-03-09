@@ -79,10 +79,22 @@ Window {
 
         MatrixBackground {
             id:matrixbg
-            x:100
-            y:120
-            width:200
+            x:matrix_grid.x-20
+            y:matrix_grid.y
+            width:matrix_grid.width+30
+            height:matrix_grid.height
+        }
+
+        GridLayout {
+            id: matrix_grid
+            objectName: "matrix_grid"
+            columns:2
+            width:300
             height:200
+            x:50
+            y:100
+            uniformCellHeights:true
+            uniformCellWidths:true
         }
 
         Button {
