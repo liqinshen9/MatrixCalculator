@@ -74,6 +74,7 @@ Window {
             y:30
             onPressed: {
                 root.message("toggle_scalars")
+                matrixbg.has_scalar = ! matrixbg.has_scalar
             }
         }
 

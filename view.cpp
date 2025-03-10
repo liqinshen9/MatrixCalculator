@@ -10,19 +10,20 @@ View::View(QQuickItem *parent):
 
 void View::message(QString msg)
 {
-    printMatrix();
+    //printMatrix();
 
     if (msg == "apply_dimensions") {
-        QQuickItem* n_dim = this->findChild<QQuickItem*>("n_dimension");
-        QQuickItem* m_dim = this->findChild<QQuickItem*>("m_dimension");
-        int n = n_dim->property("text").toInt();
-        int m = m_dim->property("text").toInt();
-        qDebug()<< n;
-        qDebug()<< m;
+        applyDimension();
     }
 
     if(msg=="toggle_scalars") {
-        qDebug()<<msg;
+        if (matrix->hasScalars()){
+            matrix->showScalars(false);
+            applyDimension();
+        }else{
+            matrix->showScalars(true);
+            applyDimension();
+        }
     }
 
     if (msg == "row_reduce") {
@@ -37,14 +38,9 @@ void View::message(QString msg)
 
 void View::printMatrix()
 {
-    QQuickItem* n_dim = this->findChild<QQuickItem*>("n_dimension");
-    QQuickItem* m_dim = this->findChild<QQuickItem*>("m_dimension");
-    int n = n_dim->property("text").toInt();
-    int m = m_dim->property("text").toInt();
-    matrix->applyDimension(n,m);//important
-
+    int n = matrix->getN();
+    int m = matrix->getM();
     QQuickItem *matrix_grid = this->findChild<QQuickItem*>("matrix_grid");
-    matrix_grid->setProperty("columns", m); //in qml, defeat columns is 2
 
     for (int i = 0;i<matrix_grid->childItems().length();i++){
         matrix_grid->childItems().at(i)->deleteLater();
@@ -86,8 +82,15 @@ void View::applyDimension()
     QQuickItem* matrix_grid = this->findChild<QQuickItem*>("matrix_grid");
     matrix_grid->setWidth(m*100);
     matrix_grid->setHeight(n*60);
-    matrix->applyDimension(n,m);
-    matrix_grid->setProperty("columns",m);
+    if (matrix->hasScalars()) {
+        matrix_grid->setWidth((m+1)*100);
+        matrix->applyDimension(n,m+1);
+        matrix_grid->setProperty("columns",m+1);
+    }else{
+        matrix->applyDimension(n,m);
+        matrix_grid->setProperty("columns",m);
+    }
+
     printMatrix();
 
 }

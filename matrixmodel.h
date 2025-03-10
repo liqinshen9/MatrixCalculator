@@ -12,8 +12,12 @@ public:
     void setEntry(int row, int col, double value);
     void applyDimension(int new_n, int new_m);
 
+    void showScalars(bool state) {has_scalars = state;}
+    bool hasScalars() {return has_scalars;}
+
 
 private:
+    bool has_scalars = false;
     int n;
     int m;
     QVector<QVector<double>> data;

@@ -25,4 +25,13 @@ void MatrixBackground::paint(QPainter *painter) //overloaded paint function in Q
     painter->drawLine(QPoint(width(), radius), QPoint(width()-lip_size, radius));
     painter->drawLine(QPoint(width(), height()-radius), QPoint(width()-lip_size, height()-radius));
 
+    if (has_scalar==true) {
+        painter->drawLine(QPoint(width()-120, 5), QPoint(width()-120, height() - 5));
+    }
+}
+
+void MatrixBackground::showScalar(bool value)
+{
+    has_scalar = value;
+    update();
 }
