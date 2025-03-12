@@ -27,7 +27,8 @@ void View::message(QString msg)
     }
 
     if (msg == "row_reduce") {
-        qDebug()<<msg;
+        matrix->rowReduce();
+        printMatrix();
     }
 
     if(msg=="solve") {
