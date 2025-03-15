@@ -85,7 +85,7 @@ void MatrixModel::rowReduce()
 
 bool MatrixModel::hasContradiction()
 {
-    if(has_scalars == true){return false;}
+    if(!has_scalars){return false;}
     for (int i = 0; i < n; i++) {
         if(data[i][data[i].length()-1] == 0) {
             continue;
@@ -104,3 +104,29 @@ bool MatrixModel::hasContradiction()
     return false;
 }
 
+
+void MatrixModel::solve()
+{
+    if (!has_scalars) {return;}
+    rowReduce();
+    if(hasContradiction()) {
+        return;
+    }
+    for (int row = n-1; row>0; row--) {
+        int pivot = -1;
+        for (int col = 0; col < m; col++) {
+            if (data[row][col]!= 0) {
+                pivot = col;
+                break;
+            }
+        }
+        for (int target = row-1; target >= 0; target--) {
+            if (data[target][pivot] == 0) {
+                continue;
+            }
+            double factor = data[target][pivot];
+            QVector<double> multiplied_row = multiplyRow(data[row], factor);
+            data[target] = subtractRow(data[target], multiplied_row);
+        }
+    }
+}

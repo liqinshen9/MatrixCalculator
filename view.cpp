@@ -32,7 +32,8 @@ void View::message(QString msg)
     }
 
     if(msg=="solve") {
-        qDebug()<<msg;
+        matrix->solve();
+        printMatrix();
     }
 
 }
