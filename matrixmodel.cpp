@@ -59,13 +59,13 @@ void MatrixModel::rowReduce()
     while (row<n && col <m) {
         if (data[row][col] == 0) {
             bool swapped = false;
-            for (int i = row+1;i < n;i++) {
-                if (data[i][col] != 0) {
+            for (int i = row+1;i < n;i++) {//loop through each element below the current element
+                if (data[i][col] != 0) {//if there exists non zero pivot below the pivot of current equal to 0 element, swap!
                     swapRows(row,i);
                     swapped = true;
                 }
             }
-            if (swapped == false) {
+            if (swapped == false) {//if there does not exist non zero pivot below the current pivot, skip this loop, col+= 1, row remain unchanged
                 col+=1;
                 continue;
             }
@@ -76,6 +76,7 @@ void MatrixModel::rowReduce()
             factor = data[i][col];
             QVector<double> multiplied_row = multiplyRow(data[row], factor);
             data[i] = subtractRow(data[i], multiplied_row);
+            //do the same for scalars
 
         }
         row+=1;

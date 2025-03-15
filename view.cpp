@@ -10,8 +10,6 @@ View::View(QQuickItem *parent):
 
 void View::message(QString msg)
 {
-    //printMatrix();
-
     if (msg == "apply_dimensions") {
         applyDimension();
     }
@@ -35,7 +33,6 @@ void View::message(QString msg)
         matrix->solve();
         printMatrix();
     }
-
 }
 
 void View::printMatrix()
@@ -51,12 +48,14 @@ void View::printMatrix()
     matrix_grid->childItems().clear();
 
     for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
+        for (int j = 0; j < m; j++) {  
+            //Below are used when c++ write on window
             QQmlComponent component(engine, QUrl::fromLocalFile("MatrixMoo/MatrixEntry.qml"));
             QQuickItem * entry = qobject_cast<QQuickItem*>(component.create());
             entry->setParentItem(matrix_grid);
             entry->setParent(engine);
             entry->setProperty("text",matrix->getEntry(i,j));
+            //otherwise, column will always be 2 as defined in main.qml
             connect(entry, SIGNAL(editingFinished()), this, SLOT(saveMatrix()));
 
         }
